@@ -1,0 +1,15 @@
+
+
+Init初始化 ---> 创建多个CWork存到m_ThreadPool ---> 每个CWork在单独创建线程
+---> 线程执行CThreadPoolExecutor::CWork::Run()循环GetTask() ---> 运行获取到的任务。
+
+
+                                         是                          是   
+添加一个任务Execute ---> 任务列表满没了 ---> 线程池线程到达上限了没  ---> 放弃任务,返回false
+                              |                           |                       
+                              |  否                       |   否
+                              |                           |
+                       直接添加到任务列表     创建新线程CWork直接执行任务             
+
+
+
